@@ -11,6 +11,14 @@ end
 
 do
 local _ENV = _ENV
+package.preload[ "fnot" ] = function( ... ) local arg = _G.arg;
+--because not is a reserved keyword that sorta acts like a function but isn't first class
+return function(bool) return not(bool) end
+end
+end
+
+do
+local _ENV = _ENV
 package.preload[ "id" ] = function( ... ) local arg = _G.arg;
 return function(i) return i end
 end
@@ -83,4 +91,5 @@ local list = require("list")
 lambda.id = require("id")
 lambda.compose = require("compose")
 lambda.combine = list.fold(lambda.compose, lambda.id)
+lambda.fnot = require("fnot")
 return lambda
