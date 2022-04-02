@@ -1,0 +1,1 @@
+amalg.lua -o ./lambda.portable.lua -s ./lambda.lua list id compose && luarocks --local build
